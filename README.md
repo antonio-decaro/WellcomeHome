@@ -60,7 +60,7 @@ I test sono stati eseguiti con un Raspberry Pi 4, al quale è stata collegata un
 Di seguito vengono riportati i passaggi da effettuare per eseguire lo script su un Raspberry Pi 4.
 
 #### 0. Effettuare il primo accesso al bot
-Collegarsi al bot da telegram (**@wellcomehome_bot**) ed effettuare l'accesso con il proprio account GitHub seguendo le istruzioni del bot.
+Collegarsi al bot da Telegram (**@wellcomehome_bot**) ed effettuare l'accesso con il proprio account GitHub seguendo le istruzioni del bot.
 Memorizzare il proprio **ID** inviando al bot un messaggio contenente il testo "id" o cliccando l'apposito pulsante consigliato dal bot.
 
 #### 1. Aggiornare il raspberry
