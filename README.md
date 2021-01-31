@@ -33,6 +33,20 @@ La tabella seguente riassume e motiva tutti i servizi in Cloud utilizzati da Wel
 |7|**Bot Channel Registration**|In sinergia con App Service, il servizio di Bot Channel Registration viene impiegato per effettuare il binding del bot al canale di comunicazione Telegram.|
 
 ## Architettura
+Gli attori principali dell'applicazione sono l'utente e la IoT Camera. L'interfaccia utente è definita dal bot, hostato attraverso l'utilizzo di un App Service e di un Bot Channel Registration.
+
+La comunicazione tra l'utente ed il bot avviene grazie al canale di comunicazione telegram. Per utilizzare l'applicazione, l'utente deve necessariamente effettuare l'accesso al suo account di GitHub in modo da essere riconosciuto nel dominio dell'applicazione. L'autenticazione avviene grazie al provider OAuth di GitHub. 
+
+La IoT camera si occupa di effettuare l'upload di frame all'interno di un Blob Storage tramite una stringa di connessione dotata di firma di accesso condiviso (SAS).
+
+Quando viene effettuato l'upload di un immagine all'interno del Blob Storage viene eseguita la funzione FaceDetection che si avvale della Face Recognition di Azure per identificare il volto presente nell'immagine.
+
+L'Azure Cosmos DB contiene informazioni circa gli utenti registrati all'applicazione e le corrispettive identità dei volti inseriti.
+
+La funzione ManagePeople effettua operazioni di inserimento o aggiornamento di identità all'interno del database.
+
+Infine sono presenti altre due funzioni StorageCleaner e CognitiveServiceCleaner che vengono eseguite rispettivamente ogni 15 minuti ed una volta a settimana. La prima elimina dal Blob Storage tutte le immagini caricate dalla camera che non sono state utilizzate nei 15 minuti precedenti, la seconda funzione invece serve per mantenere consistenti le informazioni che persistono nei Cognitive Services con quelle presenti nel database.
+
 ![Architettura](/architettura.png)
 *ps. Sia le Functions che il Bot comunicano con il servizio di Azure Key Vault per accedere alle informazioni sensibili.*
 
