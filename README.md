@@ -89,7 +89,7 @@ Collegare una webcam al raspberry ed eseguire il comando:
 
     $ python3 script.py <ID dello step 0> <percorso installazione python>/site-packages/cv2/data/haarcascade_frontalface_default.xml
 
-Ora l'app è pronta per essere utilizzata!
+Ora WellcomeHome è pronto!
 
 ------------
 
