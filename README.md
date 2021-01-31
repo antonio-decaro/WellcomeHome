@@ -33,4 +33,4 @@ La tabella seguente riassume e motiva tutti i servizi in Cloud utilizzati da Wel
 |7|**Bot Channel Registration**|In sinergia con App Service, il servizio di Bot Channel Registration viene impiegato per effettuare il binding del bot al canale di comunicazione Telegram.|
 
 ## Architettura
-![Architettura](/architecture.png)
+![Architettura](/architettura.png)
