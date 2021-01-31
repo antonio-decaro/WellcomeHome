@@ -1,5 +1,6 @@
 
 # WellcomeHome
+![logo](/logo.png)
 WellcomeHome è un software che nasce con l'obbiettivo di ottenere un maggior controllo all'interno di un contesto privato, come ad esempio un appartamento, un ufficio o più generalmente un qualsiasi luogo non aperto al pubblico.
 ## Panoramica
 
@@ -33,5 +34,4 @@ La tabella seguente riassume e motiva tutti i servizi in Cloud utilizzati da Wel
 |7|**Bot Channel Registration**|In sinergia con App Service, il servizio di Bot Channel Registration viene impiegato per effettuare il binding del bot al canale di comunicazione Telegram.|
 
 ## Architettura
-
-![Architettura WellcomeHome](https://ibb.co/jwGMd14)
+![Architettura](/architecture.png)
