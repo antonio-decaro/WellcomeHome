@@ -1,6 +1,5 @@
 
 # WellcomeHome
-![logo](/logo.png){:height="100px" width="100px"}
 WellcomeHome è un software che nasce con l'obbiettivo di ottenere un maggior controllo all'interno di un contesto privato, come ad esempio un appartamento, un ufficio o più generalmente un qualsiasi luogo non aperto al pubblico.
 ## Panoramica
 
