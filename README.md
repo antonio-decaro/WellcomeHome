@@ -34,3 +34,91 @@ La tabella seguente riassume e motiva tutti i servizi in Cloud utilizzati da Wel
 
 ## Architettura
 ![Architettura](/architettura.png)
+*ps. Sia le Functions che il Bot comunicano con il servizio di Azure Key Vault per accedere alle informazioni sensibili.*
+
+## Installazione e guida all'utilizzo
+All'interno di questa repository è presente un file chiamato raspberry.py che contiene uno script realizzato in python che deve essere eseguito all'interno della macchina host della camera.
+I test sono stati eseguiti con un Raspberry Pi 4, al quale è stata collegata una webcam ordinaria.
+
+------------
+
+### Installazione
+Di seguito vengono riportati i passaggi da effettuare per eseguire lo script su un Raspberry Pi 4.
+
+#### 0. Effettuare il primo accesso al bot
+Collegarsi al bot da telegram (**@wellcomehome_bot**) ed effettuare l'accesso con il proprio account GitHub seguendo le istruzioni del bot.
+Memorizzare il proprio **ID** inviando al bot un messaggio contenente il testo "id" o cliccando l'apposito pulsante consigliato dal bot.
+
+#### 1. Aggiornare il raspberry
+Accedere al Raspberry e digitare i seguenti comandi:
+
+    $ sudo apt-get update
+    $ sudo apt-get upgrade
+   
+#### 2. Installare Python
+Se si dispone già di una versione di python 3.8 o superiore è possibile saltare questo passaggio, altrimenti digitare i seguenti comandi:
+
+    $ sudo apt-get install python3
+    $ sudo apt-get install pip3
+
+#### 3. Inizializzare l'applicazione
+Scaricare la cartella **WellcomeHome_Raspberry** presente all'interno del repository.
+
+Dall'interno della cartella installare le dipendenze dell'applicazione eseguire il comando:
+
+    $ pip3 install -r requirements.txt
+
+A questo punto è necessario copiare il file **/data/haarcascade_frontalface_default.xml** all'interno del percorso di installazione del pacchetto di OpenCV **[percorso installazione python]/site-packages/cv2/data** installato precedentemente. Nel mio caso il pacchetto è stato installato al percorso */usr/local/lib/python3.8/site-packages/cv2* 
+
+#### 4. Avviare l'applicazione
+Collegare una webcam al raspberry ed eseguire il comando:
+
+    $ python3 script.py <ID dello step 0> <percorso installazione python>/site-packages/cv2/data/haarcascade_frontalface_default.xml
+
+Ora l'app è pronta per essere utilizzata!
+
+------------
+
+### Guida all'utilizzo
+
+Ora che l'applicazione è in funzione è sufficiente comprendere quali sono le funzionalità principali offerte dal bot.
+
+#### Rilevamento volti
+Nel momento in cui la camera di sorveglianza rileva un volto, il bot ci invierà uno dei seguenti messaggi:
+
+> [Nome] [Cognome] è tornato a casa.
+
+nel caso in cui l'applicazione sia riuscita correttamente ad identificare il volto, oppure
+
+> Qualcuno è tornato a casa ma non so chi sia.
+> [immagine con volto evidenziato]
+
+nel caso contrario.
+
+#### Inserimento di una nuova identità
+L'utente può insegnare nuove identità al bot con l'apposito comando "Inserisci Persona".
+Il bot chiederà all'utente di inviargli un immagine (contenente solo il volto della persona che si vuole far riconoscere al bot).
+
+A questo punto l'utente può decidere o di creare un'identità da zero digitando o cliccando su "Nuovo", oppure di aggiornare un profilo già presente nel database  cliccando su "Esistente".
+
+Nel primo caso il bot chiederà di inserire il nome ed il cognome della persona da aggiungere al database.
+Nel secondo caso invece il bot mostrerà l'elenco delle persone già presenti nel database, l'utente dovrà solo cliccare sul pulsante contenente il nome ed il cognome della persona di cui si vuole aggiornare l'identità. 
+
+#### Eliminare un'identità
+L'utente ha anche la possibilità di far dimenticare al bot un'identità già conosciuta cliccando sul pulsante "Cancella Persona". Il bot mostrerà l'elenco delle persone presenti nel database.
+
+#### Testare il funzionamento dell'applicazione
+Tramite il comando "Test" l'utente può testare il funzionamento dell'applicazione inviando al bot un immagine contenente uno o più volti da identificare, a prescindere dal funzionamento della camera di sorveglianza.
+
+#### Comandi di utility
+Con il comando "Logout" l'utente può scollegare il suo account GitHub dall'applicazione.
+Tramite il comando "Cancel" l'utente può annullare qualunque operazione in corso.
+Infine il comando "Aiuto" è possibile visualizzare un messaggio che aiuta l'utente con la sua esperienza con il bot.
+
+## Link Utili
+Ai seguenti link è possibile consultare il codice del bot e delle Azure Functions.
+
+ - https://github.com/antonio-decaro/WellcomeHome-Bot
+ - https://github.com/antonio-decaro/WellcomeHome-Functions
+
+In caso di errori è possibile contattare l'autore al seguente indirizzo email: antonio.decaro99@outlook.it.
